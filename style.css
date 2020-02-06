@@ -1,0 +1,43 @@
+html, body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all .3s ease;
+}
+
+.container {
+  height: 100vh;
+}
+
+#header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#messages {
+  border: 1px solid #0f0f0f;
+  height: 50%;
+  padding: 1em;
+  grid-column: 1 / 2;
+}
+
+.user-count {
+  grid-column: 2 / 3;
+}
+
+#user-input {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-top: 1em;
+}
+
+#chatbox {
+  width: 100%;
+  padding: 1em;
+  grid-column: 1 / 2;
+}
+
+#send {
+  grid-column: 2 / 3;
+}
