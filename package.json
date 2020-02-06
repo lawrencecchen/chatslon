@@ -1,0 +1,11 @@
+{ 
+  "name": "chatslon",
+  "description": "a delightfully anlonny chats",
+  "version": "1.2.3",
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "node ."
+  },
+  "main": "server.js"
+}
