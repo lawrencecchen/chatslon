@@ -1,4 +1,4 @@
-const socket = io.connect('https://chatslon2.glitch.me')
+const socket = io.connect('https://chatslon.herokuapp.com/');
 
 //https://serverjs.io/tutorials/chat/
 var user = cookie.get("user");
