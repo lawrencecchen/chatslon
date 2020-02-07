@@ -1,20 +1,47 @@
-const server = require('server');
-const { get, socket } = server.router;
-const { render } = server.reply;
+// server.js
+// where your node app starts
 
-// Update everyone with the current user count
-const updateCounter = ctx => {
-  ctx.io.emit('count', Object.keys(ctx.io.sockets.sockets).length);
-};
+// init project
+const express = require("express");
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-// Send the new message to everyone
-const sendMessage = ctx => {
-  ctx.io.emit('message', ctx.data);
-};
+// const listener = app.listen(process.env.PORT, function() {
+//   console.log("Your app is listening on port " + listener.address().port);
+// });
 
-server([
-  get('/', ctx => render('index.html')),
-  socket('connect', updateCounter),
-  socket('disconnect', updateCounter),
-  socket('message', sendMessage)
-]);
+server.listen(8000);
+
+// we've started you off with Express,
+// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static("public"));
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + "/views/index.html");
+});
+
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/app/index.html");
+});
+
+io.on('connection', (socket) => {
+  socket.emit('check connection', {
+    message: "Connected to socks..."
+  });
+  
+  socket.on('new message', (data) => {
+    console.log(data);
+    const message = data.message;
+    const username = data.username;
+    
+    socket.emit('new message', {
+      username: username,
+      message: message
+    });
+  });
+})
