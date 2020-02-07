@@ -11,7 +11,7 @@ const io = require('socket.io')(server);
 //   console.log("Your app is listening on port " + listener.address().port);
 // });
 
-server.listen(8000);
+server.listen(process.env.PORT);
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
